@@ -8,6 +8,14 @@ import NavSide from './components/NavSide';
 
 //import {BrowserRouter ,Routes } from 'react-router-dom';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import Register_App from './components/Register_App';
+import Dashboard from './components/Layout/Dashboard';
+import { path } from 'react-router-dom';
+
+
+
 //import { Add_Name } from './components/Add_Name';
 //import Register_App from './components/Register_App';
 //mport Register from './components/Register';
@@ -30,11 +38,20 @@ function App() {
   // </>
  <BrowserRouter>
 
- <div>
- <NavSide/>
+{/*  <div> */}
+ {/* <NavSide/> */}
+
+ 
+ <Header/>
+ <Navbar>
  
   <Routes>
     <Route path="/" />
+
+    <Route path="/register" element={<Register_App/>}/>
+
+    <Route path='/dashboard' element={<Dashboard/>}/>
+    
     {/* <Route path="/AddName" element={<Add_Name/>}/> */}
     {/* <Route path="/Home" element={<NavSide/>}/> */}
     {/* <Route path='/Register' element={<Register/>}/> */}
@@ -45,9 +62,10 @@ function App() {
 
 
   </Routes>
+  </Navbar>
 
   
- </div>
+{/*  </div> */}
  </BrowserRouter>
   
   

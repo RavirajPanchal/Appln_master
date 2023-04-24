@@ -22,8 +22,31 @@ import MailIcon from '@mui/icons-material/Mail';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Home } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
+//import Link from '@mui/material/Link';
 import HomeIcon from '@mui/icons-material/Home';
+
+
+
+
+
+import { AiOutlineMenu } from "react-icons/ai";
+import { FaGem, FaHeart } from "react-icons/fa";
+import {
+  Menu,
+  MenuItem,
+  SubMenu,
+} from "react-pro-sidebar";
+//import "react-pro-sidebar/dist/css/styles.css";
+import { Link } from "react-router-dom";
+import{ProSidebar,SidebarHeader} from "react-pro-sidebar"
+
+
+
+
+
+
+
+
 
 const drawerWidth = 240;
 
@@ -56,8 +79,8 @@ const AppBar = styled(MuiAppBar, {
         duration: theme.transitions.duration.leavingScreen,
     }),
     ...(open && {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
+        /* width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: `${drawerWidth}px`, */
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -70,9 +93,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
+    /* ...theme.mixins.toolbar, */
     justifyContent: 'flex-end',
-    marginTop:'100px'
+    marginTop:'10px'
 }));
 
 
@@ -88,6 +111,22 @@ function NavSide() {
     const [open, setOpen] = useState(false);
     const [close, setclose] = useState(false);
     const [menudata, setMenudata] = useState("Add_Name");
+    const [collapsed, setCollapsed] = useState(false);
+
+
+    const styles = {
+        sideBarHeight: {
+          height: "100%",
+        },
+        menuIcon: {
+          float: "left",
+          margin: "10px",
+        },
+      };
+      const onClickMenuIcon = () => {
+        setCollapsed(!collapsed);
+      };
+    
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -105,168 +144,191 @@ function NavSide() {
 
   return (
 
-  <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
-                    
-                    <Typography variant="h6" noWrap component="div">
-                        Application Master
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+  <><Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <AppBar position="fixed" open={open} style={{marginTop:'200px'}}>
+              <Toolbar >
+
+                  <Typography variant="h6" noWrap component="div">
+                      Application Master
+                  </Typography>
+              </Toolbar>
+          </AppBar>
+
+      </Box>
 
 
-            <IconButton 
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        
-                        
-                        sx={{ mr: 2, ...(open && { display: 'none' }) }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-
-                    
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-
-                    <ListItem disablePadding >
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <HomeIcon />
-                                {/* <div className='collapse navbar-collapse'>
-                                     <ul className='navbar-nav mr-auto'>
-                                        <li className='nav-item'>
-                                         <NavLink className="nav-link" exact to="/" >
-                                            Home
-                                         </NavLink>
-                                        </li>
-
-                                    </ul>
-                                    
-                                </div> */}
-                                {/* <ListItemText primary="Home" /> */}
-                                <Link href='/'>
-
-
-                                    = Home =
-                                </Link>
-                            </ListItemIcon>
-
-
-                        </ListItemButton>
-                    </ListItem>
-
-
-                    <ListItem disablePadding onClick={() => setMenudata("Add_Name")} >
-                        <ListItemButton >
-                            <ListItemIcon>
-                                <AddCircleIcon />
-
-
-
-                                <Link href='AddName'>
-                                    {/* <ListItemText primary="Home" /> */}
-
-                                    = Add_Name =
-
-
-                                </Link>
-
-                            </ListItemIcon>
-                            {/* <ListItemText primary="Add_Name" /> */}
-                        </ListItemButton>
-                    </ListItem>
+      <ProSidebar style={styles.sideBarHeight} collapsed={collapsed} sx={{paddingTop:"200px"}}>
+      <SidebarHeader sx={{paddingTop:"250px"}}>
+        <div style={styles.menuIcon} onClick={onClickMenuIcon}>
+          <AiOutlineMenu />
+        </div>
+      </SidebarHeader>
+      <Menu iconShape="square">
+        {/* <MenuItem icon={<FaGem />}> Dashboard</MenuItem>
+        <MenuItem icon={<FaGem />}>Users</MenuItem> */}
+        <SubMenu title="Reports" icon={<FaHeart />}>
+          {/* <MenuItem>Track Report</MenuItem>
+          <MenuItem>Inventory Report</MenuItem>
+          <MenuItem>Customer Report</MenuItem> */}
+        </SubMenu>
+        <SubMenu title="Account" icon={<FaHeart />}>
+          <MenuItem>Permissions</MenuItem>
+          <MenuItem>Settings</MenuItem>
+        </SubMenu>
+        <SubMenu title="Email" icon={<FaHeart />}>
+          <MenuItem>Notification</MenuItem>
+        </SubMenu>
+      </Menu>
+    </ProSidebar>
+  
 
 
 
 
 
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AddCircleIcon />
-                                <Link href='Register'>
-                                    =Register=
-                                </Link>
-                            </ListItemIcon>
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AddCircleIcon />
-                                <Link href='Post_add'>
-                                    =Post_add=
-                                </Link>
-                            </ListItemIcon>
-                        </ListItemButton>
-                    </ListItem>
-
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AddCircleIcon />
-                                <Link href='Data_post'>
-                                    =Data_post=
-                                </Link>
-                            </ListItemIcon>
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <AddCircleIcon />
-                                <Link href='Check_add'>
-                                    =Check_add=
-                                </Link>
-                            </ListItemIcon>
-                        </ListItemButton>
-                    </ListItem>
 
 
 
+      {/* <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          style={{ marginTop: "100px" }}
+          
+          
 
-                </List>
-                <Divider />
 
-            </Drawer>
-            <Main open={open}>
-        //<DrawerHeader />  
+          sx={{ mr: 2, ...(open && { display: 'none' }) }}
+      >
+              <MenuIcon />
+          </IconButton>
+          <Drawer
 
-            </Main>
+              sx={{
+                  width: drawerWidth,
+                  flexShrink: 0,
+                  '& .MuiDrawer-paper': {
+                      width: drawerWidth,
+                      boxSizing: 'border-box',
+                  },
+              }}
+              variant="persistent"
+              anchor="top"
+              open={open}
+          >
+              <DrawerHeader>
+                  <IconButton onClick={handleDrawerClose}>
+                      {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                  </IconButton>
+              </DrawerHeader>
+              <Divider />
+              <List>
 
-            <Box>
-                {menudata == "Add_Name"}
-                
-            </Box>
-        </Box>
-  );
-}
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <HomeIcon />
+                             
+                              <Link href='/'>
+
+
+                                  = Home =
+                              </Link>
+                          </ListItemIcon>
+
+
+                      </ListItemButton>
+                  </ListItem>
+
+
+                  <ListItem disablePadding onClick={() => setMenudata("Add_Name")}>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <AddCircleIcon />
+
+
+
+                              <Link href='AddName'>
+                                  
+                                  = Add_Name =
+
+
+                              </Link>
+
+                          </ListItemIcon>
+                          
+                      </ListItemButton>
+                  </ListItem>
+
+
+
+
+
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <AddCircleIcon />
+                              <Link href='Register'>
+                                  =Register=
+                              </Link>
+                          </ListItemIcon>
+                      </ListItemButton>
+                  </ListItem>
+
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <AddCircleIcon />
+                              <Link href='Post_add'>
+                                  =Post_add=
+                              </Link>
+                          </ListItemIcon>
+                      </ListItemButton>
+                  </ListItem>
+
+
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <AddCircleIcon />
+                              <Link href='Data_post'>
+                                  =Data_post=
+                              </Link>
+                          </ListItemIcon>
+                      </ListItemButton>
+                  </ListItem>
+
+                  <ListItem disablePadding>
+                      <ListItemButton>
+                          <ListItemIcon>
+                              <AddCircleIcon />
+                              <Link href='Check_add'>
+                                  =Check_add=
+                              </Link>
+                          </ListItemIcon>
+                      </ListItemButton>
+                  </ListItem>
+
+
+
+
+              </List>
+              <Divider />
+
+          </Drawer><Main open={open}>
+        //<DrawerHeader />
+
+          </Main><Box>
+              {menudata == "Add_Name"}
+
+          </Box> */}
+          
+          </>
+        
+  //);
+        )};
 
 
 
