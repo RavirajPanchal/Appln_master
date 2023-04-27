@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Tab, Tabs, Button, useMediaQuery, useTheme } from "@mui/material";
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 // import DrawerComp from './DrawerComp';
+//import Typography from '@mui/material/Typography';
+//import { Typography } from "@mui/material";
 import Typography from '@mui/material/Typography';
 
 const Header = () => {
@@ -23,7 +25,7 @@ const Header = () => {
              textColor="inherit"
              value={value}
              onChange={(e, value) => setValue(value)} indicatorColor="secondary">
-              <li><Link to="/reg">PRODUCTS</Link></li>
+              {/* <li><Link to="/reg">PRODUCTS</Link></li> */}
               {/* <li><Link to="/services">SERVICES</Link></li>
               <li><Link to="/contact us">CONTACT US</Link></li>
              <li><Link to="/about us">ABOUT US</Link></li> */}

@@ -2,17 +2,22 @@
 import './App.css';
 import React, { useState } from 'react';
 //import Drawercomp from './Drawercomp';
-import { Drawer,List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+//import { Drawer,List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 //import  { Router,Route } from '@mui/icons-material';
-import NavSide from './components/NavSide';
+//import NavSide from './components/NavSide';
+
 
 //import {BrowserRouter ,Routes } from 'react-router-dom';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Navbar from './components/Navbar';
 import Header from './components/Header';
-import Register_App from './components/Register_App';
 import Dashboard from './components/Layout/Dashboard';
+import Reg_App from './components/Layout/Reg_App';
+import Register from './components/Layout/Register';
+import Reg_All_Data from './components/Layout/Reg_All_Data';
 import { path } from 'react-router-dom';
+import Navbar1 from './components/Navbar1';
+import Navbar2 from './components/Navbar2';
 
 
 
@@ -43,14 +48,21 @@ function App() {
 
  
  <Header/>
- <Navbar>
+ {/* <Navbar> */}
+ {/* <Navbar1/> */}
+ <Navbar2/>
  
   <Routes>
     <Route path="/" />
+    <Route path='/Reg_App' element={<Reg_App/>}/>
 
-    <Route path="/register" element={<Register_App/>}/>
+    <Route path='/Reg_All_Data' element={<Reg_All_Data/>}/>
+
+    <Route path="/register" element={<Register/>}/>
 
     <Route path='/dashboard' element={<Dashboard/>}/>
+
+    
     
     {/* <Route path="/AddName" element={<Add_Name/>}/> */}
     {/* <Route path="/Home" element={<NavSide/>}/> */}
@@ -61,8 +73,8 @@ function App() {
     
 
 
-  </Routes>
-  </Navbar>
+  </Routes>/
+  {/* </Navbar> */}
 
   
 {/*  </div> */}
